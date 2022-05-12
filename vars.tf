@@ -4,6 +4,5 @@ variable "dockerhub_user" {
 }
 variable "dockerhub_token" {
   type        = string
-  default     = ""
   description = "description"
 }

@@ -19,7 +19,7 @@ locals {
   docker_hub_action = split("\n",file("docker_hub_action"))
 }
 resource "dockerhub_repository" "example" {
-  for_each = toset(local.docker_hub_action)
+  for_each = local.docker_hub_action
   name             = split(" ",each.value)[2]
   namespace        = "bolinz"
   description      = split(" ",each.value)[1]

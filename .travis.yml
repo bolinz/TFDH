@@ -3,6 +3,9 @@ install:
   - curl https://releases.hashicorp.com/terraform/1.1.9/terraform_1.1.9_linux_amd64.zip -o terraform.zip
   - unzip terraform.zip
   - chmod +x terraform
+  - git clone -b v1.5.0 https://github.com/bolinz/kubeflow-manifests.git
+  - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+  - chmod +x ./kustomize
 script:
   - export TF_VAR_dockerhub_token=${dockerhub_token}
   - ./terraform version

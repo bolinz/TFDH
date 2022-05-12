@@ -15,10 +15,17 @@ provider "dockerhub" {
   password = var.dockerhub_token # or use DOCKER_PASSWORD environment variable
 }
 
-
+locals {
+  docker_hub_action = file("docker_hub_action")
+}
 resource "dockerhub_repository" "example" {
   name             = "example"
   namespace        = "bolinz"
   description      = "Example repository."
   full_description = "Readme."
+}
+
+output reponame {
+  value       = local.docker_hub_action
+  depends_on  = [local.docker_hub_action]
 }

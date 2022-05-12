@@ -7,6 +7,9 @@ install:
   - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
   - chmod +x ./kustomize
 script:
+  - "./kubeflow-manifests/kustomize build example|grep ' image: '|grep -v '{' > images"
+  - sed -i 's/.*image://' images
+  - cat images |uniq|awk -F ':' '{print $0 " " $1 " " $NF }'|awk '{gsub("\\.|\\/|@","_",$2) ;print $1" docker.io/bolinz/aaa:"$2"_"substr($3,1,5)}' > docker_hub_action
   - export TF_VAR_dockerhub_token=${dockerhub_token}
   - ./terraform version
   - ./terraform init

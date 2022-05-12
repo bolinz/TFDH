@@ -16,8 +16,9 @@ provider "dockerhub" {
 }
 
 locals {
-  docker_hub_action = split("\n",file("docker_hub_action"))
+  docker_hub_action = toset(split("\n",file("docker_hub_action")))
 }
+/*
 resource "dockerhub_repository" "example" {
   for_each = local.docker_hub_action
   name             = split(" ",each.value)[2]
@@ -25,6 +26,7 @@ resource "dockerhub_repository" "example" {
   description      = split(" ",each.value)[1]
   full_description = split(" ",each.value)[1]
 }
+*/
 
 output reponame {
   value       = local.docker_hub_action

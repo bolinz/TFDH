@@ -16,7 +16,7 @@ provider "dockerhub" {
 }
 
 locals {
-  docker_hub_action = file("docker_hub_action")
+  docker_hub_action = split("\n",file("docker_hub_action"))
 }
 resource "dockerhub_repository" "example" {
   name             = "example"

@@ -20,10 +20,10 @@ locals {
 }
 resource "dockerhub_repository" "example" {
   for_each = toset(local.docker_hub_action)
-  name             = split(" ",each.key)[2]
+  name             = split(" ",each.value)[2]
   namespace        = "bolinz"
-  description      = split(" ",each.key)[1]
-  full_description = split(" ",each.key)[1]
+  description      = split(" ",each.value)[1]
+  full_description = split(" ",each.value)[1]
 }
 
 output reponame {

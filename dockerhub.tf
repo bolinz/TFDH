@@ -16,7 +16,7 @@ provider "dockerhub" {
 }
 
 locals {
-  docker_hub_action = compact(toset(split("\n",file("docker_hub_action"))))
+  docker_hub_action = toset(compact(split("\n",file("docker_hub_action"))))
 }
 
 resource "dockerhub_repository" "example" {

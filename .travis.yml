@@ -4,6 +4,7 @@ install:
   - unzip terraform.zip
   - chmod +x terraform
 script:
+  - export TF_VAR_dockerhub_token=${dockerhub_token}
   - ./terraform version
   - ./terraform init
   - ./terraform plan

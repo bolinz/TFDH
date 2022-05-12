@@ -23,7 +23,7 @@ resource "dockerhub_repository" "example" {
   for_each = local.docker_hub_action
   name             = split(" ",each.value)[1]
   namespace        = "bolinz"
-  description      = split(" ",each.value)[0]
+  description      = split(" ",each.value)[1]
   full_description = each.value
 }
 

@@ -4,4 +4,6 @@ install:
   - unzip terraform.zip
   - chmod +x terraform
 script:
-  - terraform version
+  - ./terraform version
+  - ./terraform init
+  - ./terraform plan

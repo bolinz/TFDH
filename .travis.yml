@@ -21,11 +21,16 @@ before_script:
 #  - ./terraform init
 #  - ./terraform plan
 #  - ./terraform apply -input=false -auto-approve
-after_success:
+script:
   - cat docker_hub_action | awk '{system("docker pull " $1)}'
   - cat docker_hub_action | awk '{system("docker tag "$1" docker.io/bolinz/"$2":"$3)}'
   - cat docker_hub_action | awk '{system("docker push docker.io/bolinz/"$2":"$3)}'
-after_failure:
-  - cat docker_hub_action | awk '{system("docker pull " $1)}'
-  - cat docker_hub_action | awk '{system("docker tag "$1" docker.io/bolinz/"$2":"$3)}'
-  - cat docker_hub_action | awk '{system("docker push docker.io/bolinz/"$2":"$3)}'
+
+#after_success:
+#  - cat docker_hub_action | awk '{system("docker pull " $1)}'
+#  - cat docker_hub_action | awk '{system("docker tag "$1" docker.io/bolinz/"$2":"$3)}'
+#  - cat docker_hub_action | awk '{system("docker push docker.io/bolinz/"$2":"$3)}'
+#after_failure:
+#  - cat docker_hub_action | awk '{system("docker pull " $1)}'
+#  - cat docker_hub_action | awk '{system("docker tag "$1" docker.io/bolinz/"$2":"$3)}'
+#  - cat docker_hub_action | awk '{system("docker push docker.io/bolinz/"$2":"$3)}'

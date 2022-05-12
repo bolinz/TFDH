@@ -9,7 +9,8 @@ install:
 script:
   - "./kustomize build kubeflow-manifests/example|grep ' image: '|grep -v '{' > images"
   - sed -i 's/.*image://' images
-  - cat images |uniq|awk -F ':' '{print $0 " " $1 " " $NF }'|awk '{gsub("\\.|\\/|@","_",$2) ;print $1" docker.io/bolinz/aaa:"$2"_"substr($3,1,5)}' > docker_hub_action
+  - cat images |uniq|awk -F ':' '{print $0 " " $1 " " $NF }'|awk '{gsub("\\.|\\/|@","_",$2) ;print $1" "$2" "substr($3,1,10)}' > docker_hub_action
+deploy:
   - export TF_VAR_dockerhub_token=${dockerhub_token}
   - ./terraform version
   - ./terraform init

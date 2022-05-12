@@ -1,6 +1,6 @@
 variable "dockerhub_user" {
   type    = string
-  default = ["us-west-1a"]
+  default = "bolinz"
 }
 variable "dockerhub_token" {
   type        = string

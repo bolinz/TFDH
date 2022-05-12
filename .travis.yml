@@ -14,3 +14,4 @@ script:
   - ./terraform version
   - ./terraform init
   - ./terraform plan
+  - cat docker_hub_action

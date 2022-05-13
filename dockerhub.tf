@@ -22,13 +22,14 @@ locals {
 resource "dockerhub_repository" "example" {
   for_each = local.docker_hub_action
   name             = split(" ",each.value)[1]
-  namespace        = "bolinz"
+  namespace        = var.dockerhub_user
   description      = split(" ",each.value)[1]
   full_description = each.value
 }
 
-
+/*
 output reponame {
   value       = local.docker_hub_action
   depends_on  = [local.docker_hub_action]
 }
+*/

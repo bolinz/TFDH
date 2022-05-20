@@ -19,14 +19,14 @@ before_script:
 script:
   - export TF_VAR_dockerhub_token=${dockerhub_token}
   - export TF_VAR_dockerhub_user=${dockerhub_user}
-  - ./terraform version
-  - ./terraform init
-  - ./terraform plan
-  - ./terraform apply -input=false -auto-approve
+  #- ./terraform version
+  #- ./terraform init
+  #- ./terraform plan
+  #- ./terraform apply -input=false -auto-approve
 #script:
-#  - cat docker_hub_action | awk '{system("docker pull " $1)}'
-#  - cat docker_hub_action | awk '{system("docker tag "$1" docker.io/${dockerhub_user}/"$2":"$3)}'
-#  - cat docker_hub_action | awk '{system("docker push docker.io/${dockerhub_user}/"$2":"$3)}'
+  - cat docker_hub_action | awk '{system("docker pull " $1)}'
+  - cat docker_hub_action | awk '{system("docker tag "$1" docker.io/${dockerhub_user}/"$2":"$3)}'
+  - cat docker_hub_action | awk '{system("docker push docker.io/${dockerhub_user}/"$2":"$3)}'
 
 #after_success:
 #  - cat docker_hub_action | awk '{system("docker pull " $1)}'

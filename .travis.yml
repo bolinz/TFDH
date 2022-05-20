@@ -13,7 +13,7 @@ install:
 before_script:
   - "./kustomize build kubeflow-manifests/example|grep ' image: '|grep -v '{' > images"
   - sed -i 's/.*image://' images
-  - sed -i 's/@sha256:.*/v\.22\.1/' images
+  - sed -i 's/@sha256:.*/:v\.22\.1/' images
   - cat images |uniq|awk -F ':' '{print $0 " " $1 " " $NF }'|awk '{gsub("\\.|\\/|@","_",$2) ;print $1" "$2" "substr($3,1,10)}' > docker_hub_action
   - cat docker_hub_action
 script:
